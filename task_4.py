@@ -22,18 +22,14 @@ def parse_input(user_input):
 # Функція для додавання нового контакту
 @input_error
 def add_contact(args, contacts):
-    if len(args) != 2:
-        return "Invalid command. Please provide both name and phone number."
-    name, phone = args
+    name, phone = args  # Тепер декоратор обробить помилку, якщо кількість аргументів буде неправильною
     contacts[name] = phone
     return "Contact added."
 
 # Функція для зміни номера телефону існуючого контакту
 @input_error
 def change_contact(args, contacts):
-    if len(args) != 2:
-        return "Invalid command. Please provide both name and new phone number."
-    name, phone = args
+    name, phone = args  # Декоратор обробить помилку, якщо кількість аргументів буде неправильною
     if name in contacts:
         contacts[name] = phone
         return "Contact updated."
@@ -43,9 +39,7 @@ def change_contact(args, contacts):
 # Функція для показу номера телефону за ім'ям
 @input_error
 def show_phone(args, contacts):
-    if len(args) != 1:
-        return "Invalid command. Please provide a name."
-    name = args[0]
+    name = args[0]  # Декоратор обробить помилку, якщо кількість аргументів буде неправильною
     if name in contacts:
         return f"The phone number of {name} is {contacts[name]}."
     else:
@@ -84,6 +78,5 @@ def main():
         else:
             print("Invalid command.")
 
-# Запуск бота
 if __name__ == "__main__":
     main()
